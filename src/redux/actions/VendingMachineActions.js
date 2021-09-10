@@ -24,3 +24,13 @@ const getDataFailure = error => ({
   type: VendingMachineActions.FAILURE,
   payload: error,
 });
+
+export const dispatchAction = item => ({
+  type: VendingMachineActions.DISPATCH,
+  payload: {item},
+});
+
+export const dispatched = item => ({
+  type: VendingMachineActions.DISPATCHED,
+  payload: {item},
+});

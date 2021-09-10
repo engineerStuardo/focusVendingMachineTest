@@ -3,7 +3,7 @@ import {VendingMachineActions} from '../types/VendingMachineTypes';
 initialState = {
   data: [],
   loading: false,
-  dispatch: [],
+  dispatchData: [],
   dispatched: [],
   error: '',
 };
@@ -26,6 +26,20 @@ export const VendingMachineReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case VendingMachineActions.DISPATCH:
+      return {
+        ...state,
+        dispatchData: [...state.dispatchData, action.payload.item],
+      };
+    case VendingMachineActions.DISPATCHED:
+      const newData = state.dispatchData.filter(
+        item => item.id !== action.payload.item.id,
+      );
+      return {
+        ...state,
+        dispatchData: newData,
+        dispatched: [...state.dispatched, action.payload.item],
       };
     default:
       return state;

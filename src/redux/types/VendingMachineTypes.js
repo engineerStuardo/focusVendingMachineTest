@@ -3,4 +3,6 @@ export const VendingMachineActions = {
   STARTED: 'STARTED',
   SUCCESFUL: 'SUCCESFUL',
   FAILURE: 'FAILURE',
+  DISPATCH: 'DISPATCH',
+  DISPATCHED: 'DISPATCHED',
 };
