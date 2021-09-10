@@ -1,17 +1,15 @@
 import React from 'react';
 import {View, Image, Dimensions} from 'react-native';
-import {
-  Avatar,
-  Button,
-  Card,
-  Title,
-  Paragraph,
-  Colors,
-} from 'react-native-paper';
+import {Button, Card, Colors} from 'react-native-paper';
+import {useDispatch} from 'react-redux';
+
+import * as actions from '../redux/actions/VendingMachineActions';
 
 const {width, height} = Dimensions.get('screen');
 
-export const CardList = ({name, image, time}) => {
+export const CardList = ({name, image, time, item}) => {
+  const dispatch = useDispatch();
+
   return (
     <View
       style={{
@@ -36,7 +34,7 @@ export const CardList = ({name, image, time}) => {
           icon="plus-box-outline"
           mode="contained"
           color={Colors.blue800}
-          onPress={() => console.log('Pressed')}>
+          onPress={() => dispatch(actions.dispatchAction(item))}>
           Dispatch
         </Button>
       </Card>
