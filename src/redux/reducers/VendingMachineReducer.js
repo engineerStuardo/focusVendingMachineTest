@@ -1,10 +1,11 @@
 import {VendingMachineActions} from '../types/VendingMachineTypes';
 
-initialState = {
+const initialState = {
   data: [],
   loading: false,
   dispatchData: [],
   dispatched: [],
+  count: 0,
   error: '',
 };
 
@@ -28,19 +29,24 @@ export const VendingMachineReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case VendingMachineActions.DISPATCH:
+      const newItem = {...action.payload.item, count: state.count};
       return {
         ...state,
-        dispatchData: [...state.dispatchData, action.payload.item],
+        dispatchData: [...state.dispatchData, newItem],
+        count: state.count + 1,
       };
     case VendingMachineActions.DISPATCHED:
       const newData = state.dispatchData.filter(
-        item => item.id !== action.payload.item.id,
+        item =>
+          item.id !== action.payload.item.id &&
+          item.count !== action.payload.item,
       );
       return {
         ...state,
         dispatchData: newData,
         dispatched: [...state.dispatched, action.payload.item],
       };
+
     default:
       return state;
   }

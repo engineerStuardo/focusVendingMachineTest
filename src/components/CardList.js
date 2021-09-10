@@ -34,7 +34,12 @@ export const CardList = ({name, image, time, item}) => {
           icon="plus-box-outline"
           mode="contained"
           color={Colors.blue800}
-          onPress={() => dispatch(actions.dispatchAction(item))}>
+          onPress={() => {
+            dispatch(actions.dispatchAction(item));
+            // setTimeout(() => {
+            //   dispatch(actions.dispatched(item));
+            // }, item.preparation_time * 1000);
+          }}>
           Dispatch
         </Button>
       </Card>

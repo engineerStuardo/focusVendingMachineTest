@@ -9,11 +9,13 @@ export const WaitingList = ({item}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
+      console.log(item.count);
       dispatch(actions.dispatched(item));
     }, item.preparation_time * 1000);
-  }, []);
 
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <View
       style={{
