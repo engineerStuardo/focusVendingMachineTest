@@ -1,6 +1,13 @@
 import React from 'react';
 import {View, Image, Dimensions} from 'react-native';
-import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
+import {
+  Avatar,
+  Button,
+  Card,
+  Title,
+  Paragraph,
+  Colors,
+} from 'react-native-paper';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -28,6 +35,7 @@ export const CardList = ({name, image, time}) => {
         <Button
           icon="plus-box-outline"
           mode="contained"
+          color={Colors.blue800}
           onPress={() => console.log('Pressed')}>
           Dispatch
         </Button>
