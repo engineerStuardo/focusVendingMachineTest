@@ -20,9 +20,10 @@ export const Home = () => {
       name={item.name}
       image={item.thumbnail}
       time={item.preparation_time}
+      item={item}
     />
   );
-  const keyExtractor = item => item.id;
+  const keyExtractor = item => `${item.id}${Math.random()}`;
 
   return (
     <>
