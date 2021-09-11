@@ -1,18 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import {List, Avatar} from 'react-native-paper';
-import {useDispatch} from 'react-redux';
-
-import * as actions from '../redux/actions/VendingMachineActions';
+import {useSelector} from 'react-redux';
 
 export const WaitingList = ({item}) => {
   const [timing, setTiming] = useState(item.preparation_time * 1000);
-  const dispatch = useDispatch();
+  const {dispatchData} = useSelector(state => state.VendingMachineReducer);
 
   const countDown = () => {
     setTiming(time => {
       if (time === 0) {
-        dispatch(actions.dispatched(item));
         return;
       }
       const timeLeft = time - 1000;
@@ -24,7 +21,7 @@ export const WaitingList = ({item}) => {
     const interval = setInterval(countDown, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [dispatchData]);
 
   return (
     <View
