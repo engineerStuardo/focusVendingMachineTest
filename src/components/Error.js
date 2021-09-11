@@ -1,11 +1,13 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
+
+import * as Styled from '../styles/ErrorStyles';
 
 export const Error = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <Styled.Container>
       <Text>Error, api request failed!</Text>
       <Text>Check internet connection or api url...</Text>
-    </View>
+    </Styled.Container>
   );
 };

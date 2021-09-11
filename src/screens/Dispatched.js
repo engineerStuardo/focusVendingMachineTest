@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {Text, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {DispatchedList} from '../components/DispatchedList';
+import * as Styled from '../styles/DispatchedStyles';
 
 export const Dispatched = () => {
   const {dispatched} = useSelector(state => state.VendingMachineReducer);
@@ -13,9 +14,9 @@ export const Dispatched = () => {
   return (
     <>
       {dispatched.length === 0 ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Styled.Container>
           <Text>No items dispatched yet</Text>
-        </View>
+        </Styled.Container>
       ) : (
         <FlatList
           data={dispatched}

@@ -3,6 +3,7 @@ import {View, Text, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {WaitingList} from '../components/WaitingList';
+import * as Styled from '../styles/DispatchedStyles';
 
 export const Waiting = () => {
   const {dispatchData} = useSelector(state => state.VendingMachineReducer);
@@ -13,9 +14,9 @@ export const Waiting = () => {
   return (
     <>
       {dispatchData.length === 0 ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Styled.Container>
           <Text>No items added</Text>
-        </View>
+        </Styled.Container>
       ) : (
         <FlatList
           data={dispatchData}

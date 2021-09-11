@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Image, Dimensions} from 'react-native';
+import {Dimensions} from 'react-native';
 import {Button, Card, Colors} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 
 import * as actions from '../redux/actions/VendingMachineActions';
+import * as Styled from '../styles/CardListStyles';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -11,21 +12,14 @@ export const CardList = ({name, image, time, item}) => {
   const dispatch = useDispatch();
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 15,
-        marginBottom: 30,
-      }}>
-      <Card style={{width: width - 35}}>
+    <Styled.container>
+      <Styled.MainCard width={width}>
         <Card.Title
           title={name}
           subtitle={`Preparation time: ${time} seconds`}
         />
-        <Image
-          style={{width: '100%', height: height - 550, resizeMode: 'contain'}}
+        <Styled.ImageItem
+          height={height}
           source={{
             uri: image,
           }}
@@ -42,7 +36,7 @@ export const CardList = ({name, image, time, item}) => {
           }}>
           Dispatch
         </Button>
-      </Card>
-    </View>
+      </Styled.MainCard>
+    </Styled.container>
   );
 };

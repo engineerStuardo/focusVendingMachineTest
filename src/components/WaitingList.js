@@ -3,6 +3,8 @@ import {View, Text} from 'react-native';
 import {List, Avatar} from 'react-native-paper';
 import {useSelector} from 'react-redux';
 
+import * as Styled from '../styles/WaitingListStyles';
+
 export const WaitingList = ({item}) => {
   const [timing, setTiming] = useState(item.preparation_time * 1000);
   const {dispatchData} = useSelector(state => state.VendingMachineReducer);
@@ -24,29 +26,18 @@ export const WaitingList = ({item}) => {
   }, [dispatchData]);
 
   return (
-    <View
-      style={{
-        backgroundColor: 'white',
-        marginRight: 30,
-        marginLeft: 30,
-        marginTop: 15,
-      }}>
+    <Styled.Container>
       <List.Item
-        title={<Text style={{fontSize: 15}}>{item.name}</Text>}
+        title={<Styled.ListText>{item.name}</Styled.ListText>}
         right={() => (
-          <View
-            style={{
-              justifyContent: 'center',
-            }}>
-            <Text
-              style={{
-                fontSize: 10,
-              }}>{`Waiting: ${timing / 1000} seconds`}</Text>
-          </View>
+          <Styled.RightView>
+            <Styled.RightText>{`Waiting: ${
+              timing / 1000
+            } seconds`}</Styled.RightText>
+          </Styled.RightView>
         )}
         left={() => (
-          <Avatar.Image
-            style={{backgroundColor: 'gainsboro'}}
+          <Styled.LeftAvatar
             resizeMode="cover"
             size={60}
             source={{
@@ -55,6 +46,6 @@ export const WaitingList = ({item}) => {
           />
         )}
       />
-    </View>
+    </Styled.Container>
   );
 };
