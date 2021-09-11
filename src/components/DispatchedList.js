@@ -9,7 +9,7 @@ export const DispatchedList = ({item}) => {
         backgroundColor: 'white',
         marginRight: 30,
         marginLeft: 30,
-        marginTop: 30,
+        marginTop: 15,
       }}>
       <List.Item
         title={<Text style={{fontSize: 15}}>{item.name}</Text>}
@@ -20,7 +20,7 @@ export const DispatchedList = ({item}) => {
             }}>
             <Text
               style={{
-                fontSize: 18,
+                fontSize: 10,
               }}>{`Waited: ${item.preparation_time} seconds`}</Text>
           </View>
         )}
