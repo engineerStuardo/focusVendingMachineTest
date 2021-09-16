@@ -1,15 +1,12 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {Text, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import {WaitingList} from '../components/WaitingList';
 import * as Styled from '../styles/DispatchedStyles';
+import * as renderItems from '../utility/renderItems';
 
 export const Waiting = () => {
   const {dispatchData} = useSelector(state => state.VendingMachineReducer);
-
-  const renderItem = ({item}) => <WaitingList item={item} />;
-  const keyExtractor = item => `${item.id}${Math.random()}`;
 
   return (
     <>
@@ -20,8 +17,8 @@ export const Waiting = () => {
       ) : (
         <FlatList
           data={dispatchData}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
+          renderItem={renderItems.renderWaitingList}
+          keyExtractor={renderItems.keyExtractor}
         />
       )}
     </>

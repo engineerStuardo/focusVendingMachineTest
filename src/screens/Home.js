@@ -1,29 +1,13 @@
-import React, {useEffect} from 'react';
-import {FlatList, Text} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
+import {FlatList} from 'react-native';
 
 import {Loading} from '../components/Loading';
-import {CardList} from '../components/CardList';
 
-import * as actions from '../redux/actions/VendingMachineActions';
+import * as renderItems from '../utility/renderItems';
+import {useHome} from '../hooks/useHome';
 
 export const Home = () => {
-  const dispatch = useDispatch();
-  const {data, loading} = useSelector(state => state.VendingMachineReducer);
-
-  useEffect(() => {
-    dispatch(actions.getDataVendingMachine());
-  }, []);
-
-  const renderItem = ({item}) => (
-    <CardList
-      name={item.name}
-      image={item.thumbnail}
-      time={item.preparation_time}
-      item={item}
-    />
-  );
-  const keyExtractor = item => `${item.id}${Math.random()}`;
+  const {data, loading} = useHome();
 
   return (
     <>
@@ -32,8 +16,8 @@ export const Home = () => {
       ) : (
         <FlatList
           data={data}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
+          renderItem={renderItems.renderCardList}
+          keyExtractor={renderItems.keyExtractor}
         />
       )}
     </>

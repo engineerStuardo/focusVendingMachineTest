@@ -2,14 +2,11 @@ import React from 'react';
 import {Text, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import {DispatchedList} from '../components/DispatchedList';
 import * as Styled from '../styles/DispatchedStyles';
+import * as renderItems from '../utility/renderItems';
 
 export const Dispatched = () => {
   const {dispatched} = useSelector(state => state.VendingMachineReducer);
-
-  const renderItem = ({item}) => <DispatchedList item={item} />;
-  const keyExtractor = item => `${item.id}${Math.random()}`;
 
   return (
     <>
@@ -20,8 +17,8 @@ export const Dispatched = () => {
       ) : (
         <FlatList
           data={dispatched}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
+          renderItem={renderItems.renderDispatchedList}
+          keyExtractor={renderItems.keyExtractor}
         />
       )}
     </>
